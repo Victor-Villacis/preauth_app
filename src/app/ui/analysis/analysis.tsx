@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 import {
   Box,
@@ -59,8 +60,8 @@ export function Analysis({ responseData, questionData }) {
   );
   const remainingQuestions = questionDataKey
     ? questionData[questionDataKey].questions.filter(
-        (question) => question.question_number > lastQuestionNumber,
-      )
+      (question) => question.question_number > lastQuestionNumber,
+    )
     : [];
 
   const indexToLetter = (idx) => String.fromCharCode('A'.charCodeAt(0) + idx);

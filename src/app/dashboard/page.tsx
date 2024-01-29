@@ -15,6 +15,7 @@ type Job = {
 
 export default function Page() {
   const [jobStatus, setJobStatus] = useState<Job[]>([]);
+  // Here I am initiating an API call to run the analysis. 
   const handleRunAnalysis = async () => {
     const newJob: Job = {
       id: jobStatus.length + 1,
@@ -31,19 +32,19 @@ export default function Page() {
     try {
       const response = await fetch('/api/response');
       const responseData = await response.json();
-
+      // I am using a setTimeout to simulate the processing time.
       setTimeout(() => {
         setJobStatus((currentStatus) =>
           currentStatus.map((job) =>
             job.id === job.id
               ? {
-                  ...job,
-                  status: 'Done',
-                  case_id: responseData.data.case_id,
-                  cpt_codes: responseData.data.cpt_codes,
-                  is_met: responseData.data.is_met,
-                  summary: responseData.data.summary,
-                }
+                ...job,
+                status: 'Done',
+                case_id: responseData.data.case_id,
+                cpt_codes: responseData.data.cpt_codes,
+                is_met: responseData.data.is_met,
+                summary: responseData.data.summary,
+              }
               : job,
           ),
         );

@@ -7,14 +7,15 @@ import {
 import parse from 'html-react-parser';
 import { MdExpand } from 'react-icons/md';
 
-const makeNumbersBold = (text) => {
+const makeNumbersBold = (text: string) => {
   return text.replace(
     /(\d+\.) (?=[A-Z])/g,
     (match) => `<strong>${match}</strong>`,
   );
 };
 
-const ReasoningAccordion = ({ reasoning }) => {
+// The component that shows the resasoning of the decision
+const ReasoningAccordion = ({ reasoning }: { reasoning: string }) => {
   const transformedReasoning = makeNumbersBold(reasoning);
 
   return (

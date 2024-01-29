@@ -15,7 +15,17 @@ import parse from 'html-react-parser';
 import moment from 'moment';
 import { MdExpand } from 'react-icons/md';
 
-const EvidenceAccordion = ({ evidence }) => {
+import React from 'react';
+
+interface Evidence {
+  pdf_id: string;
+  pdf_name: string;
+  event_datetime: string;
+  page_number: number;
+  content: string;
+}
+
+const EvidenceAccordion: React.FC<{ evidence: Evidence[] }> = ({ evidence }) => {
   return (
     <Accordion className="shadow-lg">
       <AccordionSummary expandIcon={<MdExpand />} className="hover:bg-gray-200">

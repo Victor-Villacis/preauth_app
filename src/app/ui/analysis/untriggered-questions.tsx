@@ -14,15 +14,24 @@ import parse from 'html-react-parser';
 import { useState } from 'react';
 import { MdExpand } from 'react-icons/md';
 
-const UntriggeredQuestionsAccordion = ({ questions }) => {
+
+interface Question {
+  question_number: number;
+  question_description: string;
+  options: object;
+  actions: string[];
+}
+
+// The component that collects the questions of which the decision tree has not yet reached
+const UntriggeredQuestionsAccordion = ({ questions }: { questions: Array<Question> }) => {
   const [showRemainingQuestions, setShowRemainingQuestions] = useState(false);
 
-  const indexToLetter = (idx) => String.fromCharCode('A'.charCodeAt(0) + idx);
+  const indexToLetter = (idx: number) => String.fromCharCode('A'.charCodeAt(0) + idx);
 
   return (
     <Accordion
       expanded={showRemainingQuestions}
-      onChange={(event, isExpanded) => setShowRemainingQuestions(isExpanded)}
+      onChange={(_event, isExpanded) => setShowRemainingQuestions(isExpanded)}
     >
       <AccordionSummary expandIcon={<MdExpand />} className="hover:bg-red-200">
         <Typography>Untriggered Questions</Typography>

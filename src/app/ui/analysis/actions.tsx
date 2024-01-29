@@ -7,7 +7,13 @@ import {
 import parse from 'html-react-parser';
 import { MdExpand } from 'react-icons/md';
 
-const ActionsAccordion = ({ actions }) => {
+interface Action {
+  text: string;
+  selected: boolean;
+}
+
+
+const ActionsAccordion = ({ actions }: { actions: Action[] }) => {
   return (
     <Accordion className="shadow-lg">
       <AccordionSummary
